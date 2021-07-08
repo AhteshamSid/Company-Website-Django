@@ -15,4 +15,5 @@ Demo live [click](http://therepair.herokuapp.com/).
 <img src="home.gif" >
 
 ## Homepage ( with login)
-<img src="home1.gif" >
+ You access add gallery and client members
+ Edit and delete gallery and client
