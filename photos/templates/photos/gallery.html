@@ -1,0 +1,370 @@
+{% extends "index.html" %}
+{% load static %}
+        {% block gallery %}
+  <!-- country section -->
+
+<section id="country_section" class="country_section layout_padding">
+  <div class="container">
+    <div class="heading_container heading_center">
+      <h2>
+        Latest Works {% if request.user.is_staff %}<a href="{% url 'add' %}">+</a>{% endif %}
+      </h2>
+      <p>
+        Select product you want to apply for construction
+      </p>
+      <div align="center">
+        <button class="filter-button" data-filter="all">All</button>
+        {% for category in categories %}
+        <button class="filter-button" data-filter="{{category|slugify}}">{{category}}</button>
+        {% if request.user.is_staff %}<form class="d-inline" action="{% url 'delete_category' category.id %}" method="post"
+              enctype="multipart/form-data">
+          {% csrf_token %}
+          <button type="submit" class="border-0 bg-white"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        </form>{% endif %}
+
+        {% endfor %}
+        <button class="filter-button" data-filter="Awesome">Awesome</button>
+      </div>
+    </div>
+    <div class="row">
+      {% for photo in photos %}
+      <div class="col-md-4 filter {% if photo.category %}{{photo.category|slugify}}{% else %}Awesome{% endif %}">
+        <a href="{{photo.image.url}}" class="box fancybox" data-fancybox="gallery1">
+          <img src="{{photo.image.url}}" alt="">
+          <div class="detail-box">
+            <h3>
+              {% if photo.description%}{{photo.description}}{% endif %}
+            </h3>
+          </div>
+        </a>
+        {% if request.user.is_staff %}<form class="" action="{% url 'delete_photo' photo.id %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <button type="submit" class="border-0 bg-white"><i class="fa fa-trash" aria-hidden="true"></i></button>
+          <a href="{% url 'update_photo' photo.id %}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+        </form>{% endif %}
+      </div>
+      {% endfor %}
+      <div class="col-md-4 filter Awesome">
+        <a href="{% static 'images/c1.jpg' %}" class="box fancybox" data-fancybox="gallery1">
+          <img src="{% static 'images/c1.jpg' %}" alt="">
+          <div class="detail-box">
+            <h3>
+              Steel Railing
+            </h3>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 filter Awesome">
+        <a href="{% static 'images/c2.jpg' %}" class="box fancybox" data-fancybox="gallery1">
+          <img src="{% static 'images/c2.jpg' %}" alt="">
+          <div class="detail-box">
+            <h3>
+              Steel Railing
+            </h3>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 filter Awesome">
+        <a href="{% static 'images/c3.jpg' %}" class="box fancybox" data-fancybox="gallery1">
+          <img src="{% static 'images/c3.jpg' %}" alt="">
+          <div class="detail-box">
+            <h3>
+              Steel Railing
+            </h3>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 filter Awesome">
+        <a href="{% static 'images/c4.jpg' %}" class="box fancybox" data-fancybox="gallery1">
+          <img src="{% static 'images/c4.jpg' %}" alt="">
+          <div class="detail-box">
+            <h3>
+              Steel Railing
+            </h3>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 filter Awesome">
+        <a href="{% static 'images/c5.jpg' %}" class="box fancybox" data-fancybox="gallery1">
+          <img src="{% static 'images/c5.jpg' %}" alt="">
+          <div class="detail-box">
+            <h3>
+              Steel Railing
+            </h3>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4 filter Awesome">
+        <a href="{% static 'images/c6.jpg' %}" class="box fancybox" data-fancybox="gallery1">
+          <img src="{% static 'images/c6.jpg' %}" alt="">
+          <div class="detail-box">
+            <h3>
+              Steel Railing
+            </h3>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- end country section -->
+  <!-- service section -->
+
+  <section id="service_section" class="service_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          We Provide Services
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="box ">
+            <div class="img-box">
+              <img src="{% static 'images/s1.png' %}" alt="">
+            </div>
+            <div class="detail-box">
+              <h6>
+                Boundary Fencing
+              </h6>
+              <p>
+                Mild Steel Boundary Wall Railing and Iron boundary wall railing. We are dealing in all the wall raxor wire covering, steel gates,grills and all steel related products.
+              </p>
+              <a href="#country_section">
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="box ">
+            <div class="img-box">
+              <img src="{% static 'images/s2.png' %}" alt="">
+            </div>
+            <div class="detail-box">
+              <h6>
+                Large Scale Welding
+              </h6>
+              <p>
+                Minima consequatur architecto eaque assumenda ipsam itaque quia eum in doloribus debitis impedit ut minus tenetur corrupti excepturi ullam.
+              </p>
+              <a href="#country_section">
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="box ">
+            <div class="img-box">
+              <img src="{% static 'images/s3.png' %}" alt="">
+            </div>
+            <div class="#country_section">
+              <h6>
+                Gas Welding
+              </h6>
+              <p>
+                Minima consequatur architecto eaque assumenda ipsam itaque quia eum in doloribus debitis impedit ut minus tenetur corrupti excepturi ullam.
+              </p>
+              <a href="#country_section">
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="box ">
+            <div class="img-box">
+              <img src="{% static 'images/s4.png' %}" alt="">
+            </div>
+            <div class="detail-box">
+              <h6>
+                Steel Welding
+              </h6>
+              <p>
+                Minima consequatur architecto eaque assumenda ipsam itaque quia eum in doloribus debitis impedit ut minus tenetur corrupti excepturi ullam.
+              </p>
+              <a href="#country_section">
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end service section -->
+  <!-- about section -->
+  <section id="about_section" class="about_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 px-0">
+          <div class="img_container">
+            <div class="img-box">
+              <img src="{% static 'images/about-img.jpg' %}" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 px-0">
+          <div class="detail-box">
+            <div class="heading_container ">
+              <h2>
+                Who Are We?
+              </h2>
+            </div>
+            <p>
+              Since our inception in the year 2015 as TheRepair Works, as a sole proprietary organization, we built MS Front Gate, Iron Staircase Railing etc. and many more items.
+              We are proud to be associated with reputable vendors of the domain for the supply of the top-class quality raw materials.
+              We are backed by teams of adroit designers, technicians, and engineers who work conscientiously for achieving impeccable standards of production.
+            </p>
+            <div class="btn-box">
+              <a href="#service_section">
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 px-0">
+          <div class="img_container">
+            <div class="img-box">
+              <img src="{% static 'images/about-img.jpg' %}" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 px-0">
+          <div class="detail-box">
+            <div class="heading_container ">
+              <h2>
+                Where We Are?
+              </h2>
+            </div>
+            <p>
+              Worked all Over India. We are persistently guided by our mentor TheRepair Company whose profound industry knowledge and sharp business acumen is a driving force in our organization.
+              Under his guidance and support,
+              we have been able to establish ourselves as a force to reckon with in the domain. The collective efforts of our team led by our mentor have helped us in gaining the trust of our patrons globally.
+            </p>
+            <div class="btn-box">
+              <a href="#footer_section">
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end about section -->
+  <!-- contact section -->
+  <section id="contact_section" class="contact_section layout_padding">
+    <div class="contact_bg_box">
+      <img src="{% static 'images/contact-bg.jpg' %}" alt="">
+    </div>
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Contact Us
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-9 mx-auto">
+          <div class="form_container">
+            <form  method='POST' action="" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <input required id="id_first_name" name="first_name" type="text" class="form-control" placeholder="First Name" />
+                </div>
+                <div class="form-group col-md-6">
+                  <input id="id_last_name" name="last_name" type="text" class="form-control" placeholder="Last Name" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <input required id="id_email"  name="email" type="email" class="form-control" placeholder="Email" />
+                </div>
+                <div class="form-group col-md-6">
+                  <input required id="id_subject" name="subject" type="text" class="form-control" placeholder="Subject" />
+                </div>
+              </div>
+              <div class="form-group ">
+                <input required id="id_message" name="message" type="text" class="message-box" placeholder="Message" />
+              </div>
+              <div class="btn-box">
+                <button type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end contact section -->
+
+  <!-- client section -->
+
+  <section id="client_section"  class="client_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h5>
+          Our Team
+        </h5>
+        <p>We have a dedicated and diligent team of qualified professionals with the relevant experience in the domain serving as building blocks of the organization.
+        In order to keep pace with the, evolving technologies in the domain we ensure frequent training sessions for our employees.</p>
+        <h2>
+          What Says Our Client {% if request.user.is_staff %}<a href="{% url 'add_team' %}">+</a>{% endif %}
+        </h2>
+      </div>
+      <div class="client_container">
+        <div class="carousel-wrap ">
+          <div class="owl-carousel">
+            {% for team in team %}
+            <div class="item">
+              <div class="box">
+                <div class="img-box">
+                  <img src="{{team.image.url}}" alt="" class="img-1">
+                </div>
+            {% if request.user.is_staff %}<form class="position-absolute" action="{% url 'delete_team' team.id %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+              <a href="{% url 'update_team' team.id %}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              <button type="submit" class="border-0 bg-white"><i class="fa fa-trash" aria-hidden="true"></i></button>
+              </form>{% endif %}
+                <div class="detail-box">
+                  <h5>
+                    {{team.name}}
+                  </h5>
+                  <span>
+                    {% if team.whatsapp_url %}<a href="https://wa.me/+91{{team.whatsapp_url}}" target="_blank"><i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i></a>{% endif %}
+         {% if team.facebook_url %}<a href="{{team.facebook_url}}" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>{% endif %}
+         {% if team.youtube_url %}<a href="{{team.youtube_url}}" target="_blank"><i class="fa fa-youtube fa-2x" aria-hidden="true"></i></a>{% endif %}
+         {% if team.twitter_url %}<a href="{{team.twitter_url}}" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>{% endif %}
+         {% if team.linkedin_url %}<a href="{{team.linkedin_url}}" target="_blank"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>{% endif %}
+         {% if team.instagram_url %}<a href="{{team.instagram_url}}" target="_blank"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>{% endif %}
+         {% if team.whatsapp_url%}<a href="tel:{{team.whatsapp_url}}" target="_blank"><i class="fa fa-phone fa-2x" aria-hidden="true"></i></a>{% endif %}
+                    </span>
+                  <p>
+                   {% if team.description%}{{team.description}}{% endif %}
+                  </p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end client section -->
+
+
+        {% endblock %}
