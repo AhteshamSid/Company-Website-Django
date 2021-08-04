@@ -28,11 +28,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 if DEBUG:
-    SECRET_KEY = 'django-insecure-&7gpl@gzdpm_66xtffd2d0y5%1r=)7^^=7)b4mgti2juu6c8p('
+    SECRET_KEY = 'create secrete key in python console'
 else:
     SECRET_KEY = os.environ['SECRET_KEY']
 
-ALLOWED_HOSTS = ['localhost', 'therepair.herokuapp.com', '127.0.0.1']  # ['*'] now load media
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']  # ['*'] now load media
 
 # Application definition
 
